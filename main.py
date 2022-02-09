@@ -5,12 +5,12 @@ warnings.filterwarnings("ignore")
 import yaml
 #Reading the description file
 
-description_symp=pd.read_csv("./symptom_Description.csv")
+description_symp=pd.read_csv("server/artifacts/symptom_Description.csv")
 description_dict=description_symp.set_index('Disease').to_dict()['Description']
 
 #Reading the precaution file
 
-precautions=pd.read_csv("./symptom_precaution.csv")
+precautions=pd.read_csv("server/artifacts/symptom_precaution.csv")
 precautions["list_of_prec"] = 0
 for i in range(precautions.shape[0]):
     values = precautions.iloc[i].values

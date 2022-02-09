@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Banglore Home Price Prediction</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+	<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="img"></div>
+
+<h2>Disease</h2>
+
+<ul class="listDisease" id="allDis">
+
+</ul>
+
+<form class="form">
+    <input class=""  type="text" id="disInput" name="Code of Diseases" value="">
+    <button type="button" onclick="deleteLast()">Delete last disease</button>
+    <button type="button" onclick="pass_symp()">Get the result</button>
+</form>
+<h2>Your Disease result. Remember you'd visit  a doctor before acting according to your result.</h2>
+<span id="result"></span>
+
+<h2 id="H_description"></h2>
+<span id="description"></span>
+<h2 id="H_precautions"></h2>
+<span id="precautions"></span>
