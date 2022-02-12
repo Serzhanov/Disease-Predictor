@@ -22,7 +22,7 @@ $(document).ready(function(){
       console.log(results);
       var i=0;
       results.symptoms.forEach(function(element) {
-        all_dis.insertAdjacentHTML( 'beforeend','<li onClick="controllingAddDelDisease(this.id)"><a href="#">' +element +"</a></li>");
+        all_dis.insertAdjacentHTML( 'beforeend','<li onClick="controllingAddDelDisease(this.id)"><a href="#" onClick="return false;">' +element +"</a></li>");
         last_li = $( "li" ).get( -1 )
         jQuery(last_li).prev("li").attr("id",i);
         i++;
@@ -38,27 +38,26 @@ $(document).ready(function(){
     all_disease[id]=1;
     console.log("added ok");
     index_to_del=id;
-
     $.ajax({
     url: url,
     dataType: 'json',
-      error: function(){
+    error: function(){
         console.log('JSON FAILED for data');
-      },
+        },
     success:function(results){
-    text_disease_index=input_textShaping(true,results.symptoms[id-1]);
-    document.getElementById("disInput").value=text_disease_index;
-    }
-
- })
-
-
+        text_disease_index=input_textShaping(true,results.symptoms[id-1]);
+        document.getElementById("disInput").value=text_disease_index;
+        }
+    })
+    return false;
 }
+
 function deleteLast(){
     all_disease[index_to_del]=0;
     console.log("deleted ok");
     delete_the_last_dis_inText();
 }
+
 function delete_the_last_dis_inText(){
     text_disease_index=input_textShaping(false);
     console.log(text_disease_index);
@@ -73,7 +72,7 @@ function input_textShaping(addOrDel,toAdd=""){
     else{
         let i=0;
         let checker=false;
-        while (i<text_disease_index.length && !checker && text_disease_index<=17){
+        while (i<text_disease_index.length && !checker && i<17){
             if(text_disease_index[i].localeCompare(toAdd)==0){
                 console.log(toAdd);
                 console.log(text_disease_index[i]);
@@ -97,38 +96,28 @@ function pass_symp(){
             console.log("Here we go");
             console.log(data);
             $( "#result" ).text(data.predicted_disease);
-
-            let result=document.getElementById('result');
-            let button_descr=document.createElement('button');
-            button_descr.innerHTML="Description";
-            button_descr.onClick=get_description();
-            insertAfter_res(button_descr,result.lastElementChild);
-
-
-            let button_precau=document.createElement('button');
-            button_precau.innerHTML="Precautions";
-            button_precau.onClick=get_precaution();
-            insertAfter_res(button_precau,result.lastElementChild);
-
-
+            get_precaution();
         });
 
 }
 function get_description(){
-    document.getElementById('H_description').textContent = 'Description:'.
-    $.get("http://127.0.0.1:5000/get_description", function (response) {
-    var myVar = response;
-    $( "#description" ).text(response);
-});
+    document.getElementById('H_description').textContent = 'Description:';
+    $.ajax({
+    url: 'http://127.0.0.1:5000/get_description',
+    dataType: 'json',
+    type:"GET",
+    error: function(){
+        console.log('JSON FAILED for data2');
+      },
+    success:function(data){
+        console.log(data);
+        $( "#description" ).text(data.description_disease);
+        }
+    });
 }
-
 function get_precaution(){
-    document.getElementById('H_precautions').textContent = 'Precautions:'.
-    $.get("http://127.0.0.1:5000/get_precaution", function (response) {
-    var myVar = response;
-    $( "#precautions" ).text(response);
-});
-}
-function insertAfter_res(newNode, existingNode) {
-    existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+    document.getElementById('H_precautions').textContent = 'Precautions:';
+    $.getJSON("http://127.0.0.1:5000/get_precaution", function (data) {
+    $( "#precautions" ).text(data.precautions_of_disease);
+    });
 }

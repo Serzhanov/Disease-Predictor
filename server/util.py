@@ -30,5 +30,7 @@ def get_dict_descriptions():
 
 def get_dict_precautions():
     precautions_of_diseases = pd.read_csv("artifacts/symptom_precaution.csv")
+    if (precautions_of_diseases.isnull().values.any()):
+        precautions_of_diseases=precautions_of_diseases.fillna("")
     prec = precautions_of_diseases.set_index('Disease').T.to_dict('list')
     return prec
