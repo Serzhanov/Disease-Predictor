@@ -1,9 +1,10 @@
-from flask import Flask,request,jsonify,json
+from flask import Flask,request,jsonify,json,render_template, template_rendered
 import util
-app = Flask(__name__)
+app = Flask(__name__,template_folder='../template',static_folder='../static')
 
 description=""
 precautions=[]
+
 
 @app.route('/get_all_symptoms')
 def get_all_symptoms():
@@ -12,7 +13,6 @@ def get_all_symptoms():
     })
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
-
 
 
 @app.route('/passing_the_symptoms')

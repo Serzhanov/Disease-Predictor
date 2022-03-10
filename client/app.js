@@ -17,7 +17,6 @@ $(document).ready(function(){
       },
     success:function(results){
   /* the results is your json, you can reference the elements directly by using it here, without creating any additional variables */
-  
       var all_dis = document.getElementById("allDis");
       console.log(results);
       var i=0;

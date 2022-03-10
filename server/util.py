@@ -4,10 +4,10 @@ warnings.filterwarnings("ignore")
 import pickle
 import json
 
-with open('artifacts/model_pickle', 'rb') as f:
+with open('server/artifacts/model_pickle', 'rb') as f:
     __model = pickle.load(f)
 
-with open('artifacts/columns.json','r') as f2:
+with open('server/artifacts/columns.json','r') as f2:
     __all_symp=json.load(f2)['data_colums']
 
 def get_all_symp():
