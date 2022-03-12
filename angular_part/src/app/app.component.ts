@@ -19,7 +19,7 @@ export class AppComponent {
   }
   ngOnInit(){
     this.symps.readAllSymps().subscribe({
-    next: (v) => this.assignment(v),
+    next: (obj) => this.assignment(obj),
     error: (e) => console.error(e),
     complete: () => console.info('complete')
     }
