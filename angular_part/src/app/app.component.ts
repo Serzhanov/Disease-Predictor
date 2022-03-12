@@ -1,6 +1,6 @@
 import { SymptomsService } from './symptoms.service';
 import { Component } from '@angular/core';
-import {Symptom} from './interface_symptoms';
+import {Symptoms} from './interface_symptoms';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,21 +9,20 @@ import {Symptom} from './interface_symptoms';
 
 export class AppComponent {
   title = 'angular_part';
-  all_symptoms : string[]=[];
+  all_symptoms : Symptoms={symptoms:[]};
+  nameSymptoms:string[]=[];
   constructor(private symps:SymptomsService){
 
   }
+  assignment(object:Object){
+    this.all_symptoms = object as Symptoms;
+  }
   ngOnInit(){
-    this.symps.readAllSymps().subscribe(
-      (response)=>
-      {
-        this.all_symptoms=response;
-      },
-      (error)=>
-      {
-        console.log(error);
-        console.log("error");
-      }
+    this.symps.readAllSymps().subscribe({
+    next: (v) => this.assignment(v),
+    error: (e) => console.error(e),
+    complete: () => console.info('complete')
+    }
     )
   }
 }

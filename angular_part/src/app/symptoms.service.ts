@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Symptom} from './interface_symptoms';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,10 +16,10 @@ export class SymptomsService {
    ngOnInit(){
 
   }
+
   readAllSymps(){
-    let x = this.http.get<string[]>(this.symptom[0]);
-    console.log(x)
-    console.log(x)
-    return this.http.get<string[]>(JSON.parse(this.symptom[0]));
+
+    return this.http.get(this.symptom);
+
   }
 }

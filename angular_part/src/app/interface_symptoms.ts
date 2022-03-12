@@ -1,3 +1,3 @@
-export interface Symptom{
-  readonly name:string;
+export interface Symptoms{
+   symptoms:string[];
 }
