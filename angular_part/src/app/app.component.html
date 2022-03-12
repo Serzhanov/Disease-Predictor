@@ -1,6 +1,10 @@
 <h1>First work</h1>
 <li *ngFor="let s of all_symptoms.symptoms">
-  <a routerLink="">
+  <a routerLink="" (click)="choseSymptom(s)">
     {{s}}
   </a>
 </li>
+<div>some text</div>
+<form >
+  <app-ng-chips [choosenSymps]="choosen_symptoms.symptoms"></app-ng-chips>
+</form>

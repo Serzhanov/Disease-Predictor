@@ -8,9 +8,10 @@ import {Symptoms} from './interface_symptoms';
 })
 
 export class AppComponent {
-  title = 'angular_part';
-  all_symptoms : Symptoms={symptoms:[]};
-  nameSymptoms:string[]=[];
+  public title = 'angular_part';
+  public all_symptoms : Symptoms={symptoms:[]};
+  public choosen_symptoms:Symptoms={symptoms:[]};
+
   constructor(private symps:SymptomsService){
 
   }
@@ -24,5 +25,15 @@ export class AppComponent {
     complete: () => console.info('complete')
     }
     )
+  }
+  choseSymptom(symptom:string){
+    let checkDup=false;
+    for (let i=0;i<this.choosen_symptoms.symptoms.length;i++){
+      if(this.choosen_symptoms.symptoms[i]===symptom)
+        checkDup=true;
+    }
+    if(!checkDup)
+      this.choosen_symptoms.symptoms.push(symptom);
+
   }
 }
