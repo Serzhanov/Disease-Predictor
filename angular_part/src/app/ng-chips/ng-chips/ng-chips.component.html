@@ -1,2 +1,3 @@
 <p>ng-chips works!</p>
-<tag-input [(ngModel)]='choosenSymps' [modelAsStrings]="true" [allowDupes]="false"  [hideForm]="true" ></tag-input>
+<tag-input [(ngModel)]='choosenSymps' [modelAsStrings]="true" [allowDupes]="false"  [hideForm]="true"
+(onRemove)="deleteSymptom_emit($event)"></tag-input>

@@ -24,12 +24,12 @@ def get_disease(symptoms):
 
 
 def get_dict_descriptions():
-    descriptons_of_diseases = pd.read_csv("artifacts/symptom_Description.csv")
+    descriptons_of_diseases = pd.read_csv("server/artifacts/symptom_Description.csv")
     desc = dict(descriptons_of_diseases.values)
     return desc
 
 def get_dict_precautions():
-    precautions_of_diseases = pd.read_csv("artifacts/symptom_precaution.csv")
+    precautions_of_diseases = pd.read_csv("server/artifacts/symptom_precaution.csv")
     if (precautions_of_diseases.isnull().values.any()):
         precautions_of_diseases=precautions_of_diseases.fillna("")
     prec = precautions_of_diseases.set_index('Disease').T.to_dict('list')

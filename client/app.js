@@ -89,10 +89,10 @@ function input_textShaping(addOrDel,toAdd=""){
 }
 
 function pass_symp(){
-    $.getJSON('http://127.0.0.1:5000' + '/passing_the_symptoms', {
+    console.log({symptoms: JSON.stringify(all_disease)})
+    $.getJSON('http://127.0.0.1:5000/passing_the_symptoms', {
             symptoms: JSON.stringify(all_disease)
         }, function(data){
-            console.log("Here we go");
             console.log(data);
             $( "#result" ).text(data.predicted_disease);
             get_precaution();

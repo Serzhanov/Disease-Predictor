@@ -1,5 +1,5 @@
 import { SymptomsService } from './symptoms.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HttpClientJsonpModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { TagInputModule } from 'ngx-chips';
@@ -21,7 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     TagInputModule,
-    FormsModule
+    FormsModule,
+    HttpClientJsonpModule
   ],
   providers: [SymptomsService],
   bootstrap: [AppComponent]

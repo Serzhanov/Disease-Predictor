@@ -1,5 +1,7 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit ,Input, Output,EventEmitter} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { TagModel } from 'ngx-chips/core/tag-model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ng-chips',
@@ -9,9 +11,14 @@ import { HttpClient } from '@angular/common/http';
 
 export class NgChipsComponent implements OnInit {
   @Input() choosenSymps :string[]=[];
+  @Output() deleteSymp=new EventEmitter();
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
+  deleteSymptom_emit(element:any){
+    this.deleteSymp.emit(element);
+  }
+
 
 }

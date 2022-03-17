@@ -1,10 +1,16 @@
 <h1>First work</h1>
-<li *ngFor="let s of all_symptoms.symptoms">
-  <a routerLink="" (click)="choseSymptom(s)">
+<li *ngFor="let s of all_symptoms.symptoms;let index=index">
+  <a routerLink="" (click)="choseSymptom(s,index)">
     {{s}}
   </a>
 </li>
 <div>some text</div>
-<form >
-  <app-ng-chips [choosenSymps]="choosen_symptoms.symptoms"></app-ng-chips>
+<form>
+  <app-ng-chips
+  [choosenSymps]="choosen_symptoms.symptoms"
+  (deleteSymp)="deleteSymptom($event)"
+  ></app-ng-chips>
 </form>
+<div ng-controller="Result"></div>
+<button (click)="getResult()" value="Get Result" >dada</button>
+ {{resultOfPrediction}}

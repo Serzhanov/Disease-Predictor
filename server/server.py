@@ -1,10 +1,14 @@
+from re import L
 from flask import Flask,request,jsonify,json,render_template, template_rendered
+from flask_cors import CORS
+from logging import FileHandler,WARNING
 import util
 app = Flask(__name__,template_folder='../template',static_folder='../static')
-
+CORS(app,support_credentials=True)
 description=""
 precautions=[]
-
+file_handler = FileHandler('errorlog.txt')
+file_handler.setLevel(WARNING)
 
 @app.route('/get_all_symptoms')
 def get_all_symptoms():
@@ -14,11 +18,23 @@ def get_all_symptoms():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
+@app.route('/zaebal',methods =['POST'])
+def dont_even_work():
+    print(request)
+    print(request.form)
+    print(request.args)
+    response =jsonify({
+        'predicted_disease': 'dolboeb'
+    })
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @app.route('/passing_the_symptoms')
 def passing_the_symptoms():
     global precautions,description
     print(request)
+    print(request.get_json())
+    print(request.args.get('symptoms'))
     symptoms = json.loads(request.args.get('symptoms'))
     answer=util.get_disease(symptoms)
     #Description delcaration
