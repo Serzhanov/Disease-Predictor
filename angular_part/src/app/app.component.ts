@@ -24,7 +24,7 @@ export class AppComponent {
   assignmentForResult(object:Object){
     this.resultOfPrediction=object as Result
     this.result=this.resultOfPrediction.predicted_disease
-    console.log('here we go'+this.result)
+
 
   }
   ngOnInit(){

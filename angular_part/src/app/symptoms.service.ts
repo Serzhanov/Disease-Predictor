@@ -20,15 +20,13 @@ export class SymptomsService {
    }
    ngOnInit(){
 
-  }
+    }
   readAllSymps(){
     return this.http.get(this.symptom);
   }
-  passChosenSymtom(symptoms:any){
-    console.log(symptoms)
-    const lol={symptoms: symptoms}
-    console.log(JSON.stringify(lol))
-    return this.http.post(this.resultatSymptoms2,JSON.stringify(lol),this.httpOptions)
+  passChosenSymtom(arrSymps:any){
+    console.log(arrSymps)
+    return this.http.post(this.resultatSymptoms,{symptoms:arrSymps},this.httpOptions)
   }
 
 }

@@ -35,7 +35,6 @@ $(document).ready(function(){
 
  function controllingAddDelDisease(id) {
     all_disease[id]=1;
-    console.log("added ok");
     index_to_del=id;
     $.ajax({
     url: url,
@@ -88,12 +87,13 @@ function input_textShaping(addOrDel,toAdd=""){
     return text_disease_index;
 }
 
+
+
 function pass_symp(){
     console.log({symptoms: JSON.stringify(all_disease)})
     $.getJSON('http://127.0.0.1:5000/passing_the_symptoms', {
             symptoms: JSON.stringify(all_disease)
         }, function(data){
-            console.log(data);
             $( "#result" ).text(data.predicted_disease);
             get_precaution();
         });

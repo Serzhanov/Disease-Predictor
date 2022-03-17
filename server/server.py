@@ -18,25 +18,18 @@ def get_all_symptoms():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
-@app.route('/zaebal',methods =['POST'])
-def dont_even_work():
-    print(request)
-    print(request.form)
-    print(request.args)
-    response =jsonify({
-        'predicted_disease': 'dolboeb'
-    })
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+# @app.route('/zaebal',methods =['POST'])
+# def dont_even_work():
+#     print(request.get_json())
+#     response =request.get_json
+#     response.headers.add('Access-Control-Allow-Origin', '*')
+#     return response
 
-@app.route('/passing_the_symptoms')
+@app.route('/passing_the_symptoms',methods =['POST'])
 def passing_the_symptoms():
     global precautions,description
-    print(request)
-    print(request.get_json())
-    print(request.args.get('symptoms'))
-    symptoms = json.loads(request.args.get('symptoms'))
-    answer=util.get_disease(symptoms)
+    symptoms = request.get_json()
+    answer=util.get_disease(symptoms['symptoms'])
     #Description delcaration
     descriptons_of_diseases = util.get_dict_descriptions()
     description = descriptons_of_diseases.get(answer)

@@ -13,4 +13,4 @@
 </form>
 <div ng-controller="Result"></div>
 <button (click)="getResult()" value="Get Result" >dada</button>
- {{resultOfPrediction}}
+ <div *ngIf="this.result!=undefined">The result is - {{result}}</div>
