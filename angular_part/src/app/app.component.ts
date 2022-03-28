@@ -1,6 +1,6 @@
 import { SymptomsService } from './symptoms.service';
 import { Component } from '@angular/core';
-import { Symptoms, Result } from './interface_symptoms';
+import { Symptoms, Description, Precaution, Disease } from './interface_symptoms';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,24 +12,17 @@ export class AppComponent {
   public all_symptoms : Symptoms={symptoms:[]};
   public choosen_symptoms:Symptoms={symptoms:[]};
   private allDisease=new Array(131).fill(0);
-  public resultOfPrediction:Result={predicted_disease:""};
-  public result:string|undefined;
+  public resultOfPrediction:Disease|undefined;
+  public  description:Description|undefined;
+  public  precaution:Precaution|undefined;
 
   constructor(private symps:SymptomsService){
 
   }
-  assignmentForSymptoms(object:Object){
-    this.all_symptoms = object as Symptoms;
-  }
-  assignmentForResult(object:Object){
-    this.resultOfPrediction=object as Result
-    this.result=this.resultOfPrediction.predicted_disease
 
-
-  }
   ngOnInit(){
     this.symps.readAllSymps().subscribe({
-        next: (obj) => this.assignmentForSymptoms(obj),
+        next: (obj) => this.all_symptoms = obj as Symptoms,
         error: (e) => console.error(e),
         complete: () => console.info('complete')
       }
@@ -51,9 +44,27 @@ export class AppComponent {
   }
   getResult(){
     this.symps.passChosenSymtom(this.allDisease).subscribe({
-      next: (obj) => this.assignmentForResult(obj),
+      next: (obj) => this.resultOfPrediction=obj as Disease,
       error: (e) => console.error(e),
-      complete: () => console.info('complete')
+      complete: () => console.info('complete in symps')
+      }
+    )
+    this.getDescription()
+    this.getPrecaution()
+  }
+  getDescription(){
+    this.symps.getDescriptionResponse().subscribe({
+      next:(obj)=>this.description=obj as Description,
+      error:(e)=>console.log("error appeared in getDescription ",e),
+      complete:()=> console.log("complete in getDescription")
+      }
+    )
+  }
+  getPrecaution(){
+    this.symps.getPrecautionResponse().subscribe({
+      next:(obj)=>this.precaution=obj as Precaution,
+      error:(e)=>console.log("error appeared in getPrecaution ",e),
+      complete:()=> console.log("complete in getPrecaution")
       }
     )
   }

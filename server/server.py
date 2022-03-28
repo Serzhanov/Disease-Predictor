@@ -18,13 +18,6 @@ def get_all_symptoms():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
-# @app.route('/zaebal',methods =['POST'])
-# def dont_even_work():
-#     print(request.get_json())
-#     response =request.get_json
-#     response.headers.add('Access-Control-Allow-Origin', '*')
-#     return response
-
 @app.route('/passing_the_symptoms',methods =['POST'])
 def passing_the_symptoms():
     global precautions,description

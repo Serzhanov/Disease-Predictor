@@ -8,7 +8,8 @@ import {HttpClient,HttpHeaders} from '@angular/common/http';
 export class SymptomsService {
   public symptom : string = "http://127.0.0.1:5000/get_all_symptoms";
   public resultatSymptoms:string ="http://127.0.0.1:5000/passing_the_symptoms";
-  public resultatSymptoms2:string ="http://127.0.0.1:5000/zaebal";
+  public descriptionUrl:string="http://127.0.0.1:5000/get_description"
+  public precautionUrl:string="http://127.0.0.1:5000/get_precaution"
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,5 +29,10 @@ export class SymptomsService {
     console.log(arrSymps)
     return this.http.post(this.resultatSymptoms,{symptoms:arrSymps},this.httpOptions)
   }
-
+  getDescriptionResponse(){
+    return this.http.get(this.descriptionUrl)
+  }
+  getPrecautionResponse(){
+    return this.http.get(this.precautionUrl)
+  }
 }
