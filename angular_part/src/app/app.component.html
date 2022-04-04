@@ -1,0 +1,29 @@
+<h1>Symptoms of your Disease</h1>
+<ul class="column-list">
+  <li *ngFor="let s of all_symptoms.symptoms;let index=index">
+    <a routerLink="" (click)="choseSymptom(s,index)">
+      {{s}}
+    </a>
+  </li>
+</ul>
+<br>
+<form>
+  <app-ng-chips
+  [choosenSymps]="choosen_symptoms.symptoms"
+  (deleteSymp)="deleteSymptom($event)"
+  ></app-ng-chips>
+</form>
+<div ng-controller="Result"></div>
+<button (click)="getResult()">Get Result</button>
+<div *ngIf="this.resultOfPrediction!=undefined">The result is - {{resultOfPrediction.predicted_disease}}</div>
+<div *ngIf="this.description!=undefined">
+  Decription: <br>
+  <p>{{description.description_disease}}</p>
+</div>
+<br>
+<div *ngIf="this.precaution!=undefined">
+  Precaution : <br>
+  <p>
+    {{precaution.precautions_of_disease}}
+  </p>
+</div>
