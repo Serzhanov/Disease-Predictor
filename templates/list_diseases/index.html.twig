@@ -14,12 +14,17 @@
 
         <ul>
             {% for symptom in allSymptoms %}
-                <li>{{ symptom}}</li>
+               <li onClick="#"><a href="" onclick=chooseTheSymp({{loop.index}})>{{ symptom}}</a></li>
             {% endfor %}
         </ul>
     </div>
 
     This friendly message is coming from:
+    <a href="/list/diseases/predicted">Get Result
+    </a>
+    {% if output != "" %}
+        <div>its your result motherfucker {{output}}</div>
+    {% endif %}
     <ul>
         <li>Your controller at <code><a href="{{ 'C:/Users/Нурбек/Documents/GitHub/DiseasePredictionSymfony/src/Controller/ListDiseasesController.php'|file_link(0) }}">src/Controller/ListDiseasesController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'C:/Users/Нурбек/Documents/GitHub/DiseasePredictionSymfony/templates/list_diseases/index.html.twig'|file_link(0) }}">templates/list_diseases/index.html.twig</a></code></li>
